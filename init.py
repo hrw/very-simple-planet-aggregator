@@ -16,6 +16,7 @@ c.execute('''CREATE TABLE settings
 c.execute('''CREATE TABLE feeds
              (id integer primary key autoincrement,
               name text,
+              title text,
               url text,
               etag text,
               modified text)

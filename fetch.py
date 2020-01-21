@@ -57,8 +57,10 @@ Posts:     {len(data.entries)}
         if data.status == 301:  # permanent redirection
             url = data.href
 
-        c.execute('UPDATE feeds SET etag=?, modified=?, url=? WHERE id=?',
-                  (data.etag, data.modified, url, feed['id']))
+        c.execute('''UPDATE feeds SET etag=?, modified=?, url=?, title=?
+                     WHERE id=?''',
+                  (data.etag, data.modified, url, data.feed['title'],
+                   feed['id'],))
 
         # if we got all posts then drop all stored ones
         if data.status == 200:
