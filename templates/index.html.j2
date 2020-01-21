@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>Developers Planet</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="generator" content="http://intertwingly.net/code/venus/">
+<link rel="stylesheet" href="planet.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="alternate" href="/rss20.xml" title="" type="application/atom+xml">
+</head>
+
+<body>
+<h1>Developers Planet</h1>
+
+<div id="planet">
+	{% set date=0 %}
+	{% set feed=0 %}
+
+	{% for post in posts %}
+	<div class="daygroup">
+		<h1>{{ post.published_date | date}}</h1>
+		{% if post.feed_id != feed %}
+		<div class="channelgroup">
+			<h2><a href="{{ post.blog_url }}" title="{{ post.blog_title }}">{{ post.name }}</a></h2>
+		{% endif %}
+			<div class="entrygroup" >
+				<h3><a href="{{ post.url }} ">{{ post.title }}</a></h3>
+				<div class="entry">
+					<div class="content">
+					{{ post.post }}
+					</div>
+
+					<p class="date">
+						<a href="{{ post.url}}">by {{ post.author }} at {{ post.published_date | date("%d %B %Y, %H:%M") }}</a>
+					</p>
+				</div>
+			</div>
+		{% if post.feed_id != feed %}
+		    {% set feed=post.feed_id %}
+		</div>
+		{% endif %}
+	</div>
+	{% endfor %}
+</div>
+
+
+<div class="sidebar">
+
+	<h1>Subscriptions</h1>
+	<ul>
+		{% for feed in feeds %}
+		<li>
+			<a href="{{ feed.url }}" title="subscribe"><img width="10" height="10" src="images/feed-icon-10x10.png" alt="(feed)"></a>
+			<a href="{{ feed.url }}" title="{{ feed.blog_title }}">{{ feed.name }}</a>
+		</li>
+		{% endfor %}
+	</ul>
+
+	<p>
+		<strong>Last updated:</strong><br>
+		{{ generate_time }}<br>
+		<em>All times are UTC.</em><br>
+		<br />
+		<a href="/rss20.xml" title="subscribe"><img width="10" height="10" src="images/feed-icon-10x10.png" alt="(feed)"></a> <a href="/rss20.xml">Subscribe</a>
+	</p>
+
+</div>
+</body>
+
+</html>
