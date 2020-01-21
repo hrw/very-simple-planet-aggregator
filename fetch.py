@@ -37,6 +37,10 @@ for feed in c.fetchall():
         # etag and modified tell when we last checked so can get only newer
         # posts
         data = feedparser.parse(url, etag=etag, modified=modified)
+
+        if data.bozo:
+            continue
+
         if 'etag' not in data:
             data.etag = 0
         if 'modified' not in data:
