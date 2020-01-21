@@ -25,6 +25,7 @@ c.execute('''CREATE TABLE feeds
 c.execute('''CREATE TABLE posts
              (id integer primary key autoincrement,
              feed_id integer,
+             author text,
              title text,
              post text,
              url text,

@@ -74,12 +74,17 @@ Posts:     {len(data.entries)}
             elif 'summary' in post:
                 content = post.summary
 
+            if 'author' not in post:
+                author = feed['name']
+            else:
+                author = post.author
+
             published = datetime.fromtimestamp(
                 time.mktime(post.published_parsed[:8] + (-1,)))
 
-            c.execute('''INSERT INTO posts (feed_id, title, post, url,
-                      published_date) VALUES (?, ?, ?, ?, ?)''',
-                      (feed['id'], post.title, content, post.link,
+            c.execute('''INSERT INTO posts (feed_id, title, post, url, author,
+                      published_date) VALUES (?, ?, ?, ?, ?, ?)''',
+                      (feed['id'], post.title, content, post.link, author,
                        published))
             counter += 1
             if counter == MAX_ENTRIES_PER_FEED:
