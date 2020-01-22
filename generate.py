@@ -18,11 +18,13 @@ conn.row_factory = sqlite3.Row
 
 c = conn.cursor()
 
-c.execute('SELECT name, url, etag, modified, id FROM feeds ORDER BY name')
+c.execute('''SELECT name, url, etag, modified, id, blog_url
+             FROM feeds
+             ORDER BY name''')
 
 feeds = c.fetchall()
 
-c.execute('''SELECT f.name, f.url as blog_url, f.title as blog_title,
+c.execute('''SELECT f.name, f.blog_url, f.title as blog_title,
                     p.feed_id, p.title, p.url, p.post, p.published_date,
                     p.author
              FROM posts p, feeds f

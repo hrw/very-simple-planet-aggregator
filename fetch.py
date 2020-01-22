@@ -19,7 +19,7 @@ conn.row_factory = sqlite3.Row
 
 c = conn.cursor()
 
-c.execute('SELECT name, url, etag, modified, id FROM feeds')
+c.execute('SELECT * FROM feeds')
 
 for feed in c.fetchall():
     print(feed['name'])
@@ -51,6 +51,16 @@ for feed in c.fetchall():
         if 'status' not in data:
             data.status = 200
 
+        # if 304 then no data fetched
+        if 'title' in data.feed:
+            title = data.feed.title
+        else:
+            title = feed['title']
+        if 'link' in data.feed:
+            link = data.feed.link
+        else:
+            link = feed['blog_url']
+
         print(f'''
 ETag:      {data.etag}
 Modified:  {data.modified}
@@ -60,10 +70,10 @@ Posts:     {len(data.entries)}
         if data.status == 301:  # permanent redirection
             url = data.href
 
-        c.execute('''UPDATE feeds SET etag=?, modified=?, url=?, title=?
+        c.execute('''UPDATE feeds
+                     SET etag=?, modified=?, url=?, title=?, blog_url=?
                      WHERE id=?''',
-                  (data.etag, data.modified, url, data.feed['title'],
-                   feed['id'],))
+                  (data.etag, data.modified, url, title, link, feed['id'],))
 
         # if we got all posts then drop all stored ones
         if data.status == 200:

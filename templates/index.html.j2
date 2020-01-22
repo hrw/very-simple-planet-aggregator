@@ -51,7 +51,7 @@
 		{% for feed in feeds %}
 		<li>
 			<a href="{{ feed.url }}" title="subscribe"><img width="10" height="10" src="images/feed-icon-10x10.png" alt="(feed)"></a>
-			<a href="{{ feed.url }}" title="{{ feed.blog_title }}">{{ feed.name }}</a>
+			<a href="{{ feed.blog_url }}" title="{{ feed.blog_title }}">{{ feed.name }}</a>
 		</li>
 		{% endfor %}
 	</ul>

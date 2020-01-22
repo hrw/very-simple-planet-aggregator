@@ -17,6 +17,7 @@ c.execute('''CREATE TABLE feeds
              (id integer primary key autoincrement,
               name text,
               title text,
+              blog_url text,
               url text,
               etag text,
               modified text)
