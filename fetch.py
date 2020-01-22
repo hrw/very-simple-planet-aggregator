@@ -38,7 +38,10 @@ for feed in c.fetchall():
         # posts
         data = feedparser.parse(url, etag=etag, modified=modified)
 
-        if data.bozo:
+        if data.bozo and 'link' not in data.feed:
+            print(data.bozo)
+            print(data.bozo_exception)
+            print(data.feed)
             continue
 
         if 'etag' not in data:
