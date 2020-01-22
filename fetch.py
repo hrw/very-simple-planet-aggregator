@@ -3,6 +3,7 @@
 from datetime import datetime
 
 import feedparser
+import re
 import sqlite3
 import sys
 import time
@@ -20,6 +21,8 @@ conn.row_factory = sqlite3.Row
 c = conn.cursor()
 
 c.execute('SELECT * FROM feeds')
+
+author_regexp = re.compile(r'noreply@blogger.com \((.*)\)$')
 
 for feed in c.fetchall():
     print(feed['name'])
@@ -91,6 +94,9 @@ Posts:     {len(data.entries)}
                 author = feed['name']
             else:
                 author = post.author
+
+            # Blogger
+            author = author_regexp.sub(r'\1', author)
 
             published = datetime.fromtimestamp(
                 time.mktime(post.published_parsed[:8] + (-1,)))
