@@ -46,4 +46,15 @@ template = env.get_template('index.html.j2')
 output = template.render(generate_time=datetime.strftime(datetime.utcnow(),
                                                          "%d %B %Y %H:%M"),
                          posts=posts, feeds=feeds)
-print(output)
+
+with open('index.html', 'w') as html:
+    html.write(output)
+
+template = env.get_template('rss20.xml.j2')
+
+output = template.render(generate_time=datetime.strftime(datetime.utcnow(),
+                                                         "%d %B %Y %H:%M"),
+                         posts=posts, feeds=feeds)
+
+with open('rss20.xml', 'w') as rss:
+    rss.write(output)
