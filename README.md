@@ -1,7 +1,7 @@
 # Very Simple Planet Aggregator
 
 As Venus is Python 2 only I decided that I need something else to run my
-[Developer's Planet](https://devplanet.cf) aggregator.
+[Developer's Planet](https://devplanet.one.pl/) aggregator.
 
 This is the result of few hours of playing with FeedParser and Jinja2.
 
