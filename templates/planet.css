@@ -1,0 +1,167 @@
+@media (min-width: 60em) {
+body {
+	border-right: 1px solid black;
+	margin-right: 200px;
+
+	padding: 0 1em;
+
+	background-color: white;
+	color: black;
+	font-family: "Dejavu Serif", serif;
+}
+}
+
+@media (max-width: 59em) {
+body {
+	padding: 0 1em;
+
+	background-color: white;
+	color: black;
+	font-family: "Dejavu Serif", serif;
+}
+}
+
+#planet {
+	width: 100%;
+}
+
+.admin {
+	text-align: right;
+}
+
+a:hover {
+	text-decoration: underline !important;
+	color: blue !important;
+}
+pre {
+	overflow: auto;
+	border: 1px grey solid;
+	padding: 0.5em;
+}
+
+.daygroup table {
+	width: 100%;
+	table-layout: fixed;
+	word-wrap: break-word;
+}
+
+h1 {
+	margin-top: 0;
+	padding-top: 1em;
+
+	font-weight: normal;
+	text-align: right;
+
+	color: grey;
+}
+h2 {
+	font-weight: normal;
+
+	background-color: #99cc33;
+	border: 1px solid #5080b0;
+
+	padding: 4px;
+}
+h2 a {
+	text-decoration: none;
+	color: inherit;
+}
+h3 {
+	font-weight: bold;
+}
+h3 a {
+	text-decoration: none;
+	color: inherit;
+}
+.content h1, .content h2, .content h3, .content h4 {
+	font-size: 1.25em;
+	font-family: initial !important;
+	font-weight: bold;
+	background-color: white;
+	color: black;
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+.daygroup h1 {
+	font-weight: normal;
+	color: #200080;
+
+	text-align: left;
+}
+
+.daygroup img {
+	/* resize too big ones */
+	max-width: 100%;
+	height: auto;
+	/* centre */
+	display: block;
+	margin: 0 auto;
+}
+
+.daygroup div {
+	clear: both !important;
+}
+.daygroup span {
+	white-space: inherit !important;
+}
+
+.entry {
+	margin-bottom: 2em;
+}
+.entry .date {
+	color: grey;
+}
+.entry .date a {
+	text-decoration: none;
+	color: inherit;
+}
+
+@media (min-width: 60em) {
+.sidebar {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 14em;
+
+	margin: 0;
+	padding: 1em 0;
+
+	font-size: 85%;
+}
+}
+@media (max-width: 59em) {
+.sidebar {
+	margin: 0;
+	padding: 1em 0;
+	font-size: 85%;
+}
+}
+.sidebar h1 {
+	font-size: 110%;
+	font-weight: bold;
+	color: black;
+	text-align: left;
+}
+.sidebar ul {
+	padding-left: 1em;
+	margin-left: 0;
+	list-style-type: none;
+}
+.sidebar ul li:hover {
+	color: grey;
+}
+.sidebar ul li a, .sidebar a {
+        text-decoration: none;
+}
+.sidebar ul li a:hover, .sidebar a:hover {
+        text-decoration: underline;
+}
+.sidebar ul li a img {
+        border: 0;
+}
+.sidebar p {
+	border-top: 1px solid grey;
+	margin-top: 1.5em;
+	padding: 1em 0.5em;
+}
