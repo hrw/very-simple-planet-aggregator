@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+# SPDX-License-Identifier: MIT
+
 import configparser
 import sqlite3
 import sys
