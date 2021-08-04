@@ -100,13 +100,17 @@ Posts:     {len(data.entries)}
             # Blogger
             author = author_regexp.sub(r'\1', author)
 
-            published = datetime.fromtimestamp(
-                time.mktime(post.published_parsed[:8] + (-1,)))
+            try:
+                published = datetime.fromtimestamp(
+                    time.mktime(post.published_parsed[:8] + (-1,)))
 
-            c.execute('''INSERT INTO posts (feed_id, title, post, url, author,
-                      published_date) VALUES (?, ?, ?, ?, ?, ?)''',
-                      (feed['id'], post.title, content, post.link, author,
-                       published))
+                c.execute('''INSERT INTO posts (feed_id, title, post, url,
+                        author, published_date) VALUES (?, ?, ?, ?, ?, ?)''',
+                        (feed['id'], post.title, content, post.link, author,
+                        published))
+            except ValueError:
+                pass
+
             counter += 1
             if counter == MAX_ENTRIES_PER_FEED:
                 break
