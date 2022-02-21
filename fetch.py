@@ -6,6 +6,7 @@ from datetime import datetime
 
 import feedparser
 import re
+import requests
 import sqlite3
 import sys
 import time
@@ -39,9 +40,8 @@ for feed in c.fetchall():
     url = feed['url']
 
     try:
-        # etag and modified tell when we last checked so can get only newer
-        # posts
-        data = feedparser.parse(url, etag=etag, modified=modified)
+        response = requests.get(url, timeout=5)
+        data = feedparser.parse(response.text)
 
         if data.bozo and 'link' not in data.feed:
             print(data.bozo)
@@ -67,6 +67,7 @@ for feed in c.fetchall():
             link = feed['blog_url']
 
         print(f'''
+URL:       {url}
 ETag:      {data.etag}
 Modified:  {data.modified}
 Status:    {data.status}
@@ -114,6 +115,9 @@ Posts:     {len(data.entries)}
             counter += 1
             if counter == MAX_ENTRIES_PER_FEED:
                 break
+
+    except requests.exceptions.Timeout as e:
+        print(f"Timeout from {url}. {e}")
 
     except RuntimeError:
         print('failed')
