@@ -104,7 +104,11 @@ Posts:     {len(data.entries)}
             try:
                 published = datetime.fromtimestamp(
                     time.mktime(post.published_parsed[:8] + (-1,)))
+            except AttributeError:
+                published = datetime.fromtimestamp(
+                    time.mktime(post.updated_parsed[:8] + (-1,)))
 
+            try:
                 c.execute('''INSERT INTO posts (feed_id, title, post, url,
                         author, published_date) VALUES (?, ?, ?, ?, ?, ?)''',
                         (feed['id'], post.title, content, post.link, author,
