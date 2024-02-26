@@ -80,9 +80,12 @@ h3 a {
 	background-color: white;
 	color: black;
 	border: none;
-	padding: 0;
-	margin: 0;
 }
+
+figcaption {
+	text-align: center;
+}
+
 .daygroup h1 {
 	font-weight: normal;
 	color: #200080;
